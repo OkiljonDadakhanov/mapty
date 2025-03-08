@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/user/Downloads/index%20(3).html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en"><head><meta http-equiv="Content-Type"
+      content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="file:///C:/icon.png">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
 
-    <link href="./index_files/css2" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="file:///C:/Users/user/Downloads/style.css">
+    <link rel="stylesheet" href="style.css">
 
-    <script defer="" src="file:///C:/Users/user/Downloads/script.js"></script>
+    <link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin />
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin></script>
+
+    <script defer src="script.js"></script>
     <title>mapty // Map your workouts</title>
   </head>
   <body>
     <div class="sidebar">
-      <img src="./index_files/logo.png" alt="Logo" class="logo">
+      <img src="logo.png" alt="Logo" class="logo">
 
       <ul class="workouts">
         <form class="form hidden">
@@ -36,11 +44,13 @@
           </div>
           <div class="form__row">
             <label class="form__label">Cadence</label>
-            <input class="form__input form__input--cadence" placeholder="step/min">
+            <input class="form__input form__input--cadence"
+              placeholder="step/min">
           </div>
           <div class="form__row form__row--hidden">
             <label class="form__label">Elev Gain</label>
-            <input class="form__input form__input--elevation" placeholder="meters">
+            <input class="form__input form__input--elevation"
+              placeholder="meters">
           </div>
           <button class="form__btn">OK</button>
         </form>
@@ -96,12 +106,13 @@
 
       <p class="copyright">
         © Copyright by
-        <a class="twitter-link" target="_blank" href="https://twitter.com/jonasschmedtman">Jonas Schmedtmann</a>. Use for learning or your portfolio. Don't use to teach. Don't claim
+        <a class="twitter-link" target="_blank"
+          href="https://twitter.com/jonasschmedtman">Jonas Schmedtmann</a>. Use
+        for learning or your portfolio. Don't use to teach. Don't claim
         as your own.
       </p>
     </div>
 
     <div id="map"></div>
-  
 
-</body></html>
+  </body></html>
