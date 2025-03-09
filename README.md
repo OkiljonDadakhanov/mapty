@@ -47,7 +47,7 @@ This project follows an **OOP-based structure**, with classes handling different
 ## **Installation & Usage**
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/yourusername/mapty-workout.git ```
+   git clone https://github.com/yourusername/mapty.git ```
 2. **Open index.html in a browser**
 No extra dependencies needed—just open the file and start using the app!
 
