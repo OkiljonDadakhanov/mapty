@@ -1,5 +1,16 @@
 "use strict";
 
+async function getIPAddress() {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    console.error("Error fetching IP address:", error);
+    return "Unknown IP";
+  }
+}
+
 class Workout {
   date = new Date();
   id = (Date.now() + "").slice(-10);
@@ -209,6 +220,9 @@ class App {
 
     // Set local storage to all workouts
     this._setLocalStorage();
+
+    // Save workout to Google Sheet
+    saveWorkoutToSheet(workout);
   }
 
   _renderWorkoutMarker(workout) {
@@ -326,3 +340,45 @@ class App {
 }
 
 const app = new App();
+
+async function saveWorkoutToSheet(workout) {
+  try {
+    const ip = await getIPAddress();
+
+    // Get city name (optional - can be empty if you don't need it)
+    let city = "";
+
+    // Build the payload with all necessary data
+    const payload = {
+      ip: ip,
+      location: workout.coords.join(", "),
+      city: city,
+      type: workout.type,
+      distance: workout.distance,
+      duration: workout.duration,
+      pace: workout.type === "running" ? workout.pace : null,
+      speed: workout.type === "cycling" ? workout.speed : null,
+      cadence: workout.type === "running" ? workout.cadence : null,
+      elevationGain: workout.type === "cycling" ? workout.elevationGain : null,
+    };
+
+    console.log("Sending workout data to Google Sheet:", payload);
+
+    // Send data to the Google Apps Script webapp
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbzMOCG-kiOgHNwwj_rELt3tV-QEVebH9AFYKv23upZAUH1ca8goZxxphlDq2AXsL7LAmg/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const responseData = await response.text();
+    console.log("Google Sheets Response:", responseData);
+    return true;
+  } catch (error) {
+    console.error("Error saving workout to Google Sheet:", error);
+    return false;
+  }
+}
